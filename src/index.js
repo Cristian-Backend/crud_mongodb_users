@@ -22,7 +22,7 @@ app.use(express.static('public'))
 
 
 
-
+// rutas
 
 app.use('/', AlumnoRoutes)
 
