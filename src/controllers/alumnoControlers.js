@@ -37,6 +37,26 @@ const crearAlumno = async (req, res) => {
 }
 
 
+const editarAlumno = async (req, res) => {
+    try {
+        // Extraer la información del cuerpo de la solicitud
+        const { nombre_editar, correo_editar, edad_editar, id_editar } = req.body;
+
+        // Buscar y actualizar el alumno por su ID
+        const alumnoActualizado = await Alumno.findByIdAndUpdate(id_editar, { nombre: nombre_editar, correo: correo_editar, edad: edad_editar }, { new: true });
+
+
+        // Si prefieres redirigir a la página principal
+         res.redirect('/');
+
+    } catch (error) {
+        // Manejar errores
+        console.error('Error al editar el alumno:', error.message);
+        res.status(500).send('Error interno del servidor');
+    }
+};
+
+
 
 
     
@@ -73,6 +93,7 @@ const crearAlumno = async (req, res) => {
 
 module.exports = {
     crearAlumno,
+    editarAlumno,
     obtenerAlumno,
     eliminarAlumno
 }
